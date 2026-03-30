@@ -21,19 +21,25 @@
 
                     <div class="book-title">{{ option.book.title }}</div>
 
-                    <div class="vote-stats">
-                        {% with stats=option_stats|dict_get:option.id %}
-                            <div class="vote-stats">
-                                {{ stats.count }} votes ({{ stats.percentage }}%)
-                            </div>
-                        {% endwith %}
-                    </div>
+                    {% if option.book.goodreads_url %}
+                        <a class="goodreads-link" href="{{ option.book.goodreads_url }}" target="_blank">
+                            View on Goodreads →
+                        </a>
+                    {% endif %}
+
+                    {% with stats=option_stats|dict_get:option.id %}
+                        <div class="vote-stats">
+                            {{ stats.count }} votes ({{ stats.percentage }}%)
+                        </div>
+                    {% endwith %}
 
                     <a class="vote-button"
-                       href="{% url 'vote' poll.id option.id %}">
-                       Vote
+                    href="{% url 'vote' poll.id option.id %}">
+                    Vote
                     </a>
                 </div>
+
+
             {% endfor %}
         </div>
 
