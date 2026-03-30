@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AWBC</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #F7F3EE;
+            --secondary: #3f5e4b;
+            --accent: #d6a6a6;
+            --text: #2f2f2f;
+        }
+
+        body {
+            margin: 0;
+            background: var(--primary);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* NAV BAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: var(--secondary);
+            color: white;
+            position: relative;
+            z-index: 10000;
+            padding-right: 2rem;
+        }
+
+        .navbar-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.4rem;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            cursor: pointer;
+            width: 28px;
+            height: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hamburger div {
+            height: 4px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        /* SLIDE-OUT MENU */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -360px; /* fully hidden */
+            width: 260px;
+            height: 100%;
+            background: white;
+            box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+            padding: 4.5rem 1.5rem 2rem; /* top padding for navbar */
+            transition: right 0.3s ease;
+            z-index: 9998; /* below navbar, above content */
+        }
+
+        .side-menu.open {
+            right: 0; /* slides in */
+        }
+        
+        .side-menu a {
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .side-menu a:hover {
+            color: var(--accent);
+        }
+
+        .poll-section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+    </style>
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+
+<!-- NAV BAR -->
+<div class="navbar">
+    <div class="navbar-title">Arlington Women's Book Club</div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<!-- SLIDE-OUT MENU -->
+<div id="sideMenu" class="side-menu">
+    {% if user.is_authenticated %}
+        <a href="/accounts/logout/">Logout</a>
+    {% else %}
+        <a href="/accounts/login/">Login</a>
+    {% endif %}
+
+    <!-- Future links -->
+    <a href="#">Polls</a>
+    <a href="#">Past Meetings</a>
+    <a href="#">My Profile</a>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        window.toggleMenu = function () {
+            const menu = document.getElementById("sideMenu");
+            menu.classList.toggle("open");
+        };
+    });
+</script>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

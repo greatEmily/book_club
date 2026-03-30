@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<div class="poll-section">
+    {% if poll %}
+        <div class="poll-title">{{ poll.question }}</div>
+
+        <div class="book-list">
+            {% for option in poll.options.all %}
+                <div class="book-card">
+                    {% if option.book.cover_image_url %}
+                        <img src="{{ option.book.cover_image_url }}" alt="{{ option.book.title }}">
+                    {% endif %}
+
+                    <div class="book-title">{{ option.book.title }}</div>
+
+                    {% if option.book.goodreads_url %}
+                        <a class="goodreads-link" href="{{ option.book.goodreads_url }}" target="_blank">
+                            View on Goodreads
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+    {% else %}
+        <p>No active poll at the moment.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
