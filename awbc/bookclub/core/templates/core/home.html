@@ -4,50 +4,65 @@
 
 {% block content %}
 
-<div class="poll-section">
+<div class="home-container">
 
-    {% if poll %}
-        <div class="poll-title">{{ poll.question }}</div>
+    {% if user.is_authenticated %}
 
-        <div class="book-list">
-            {% for option in poll.options.all %}
-                <div class="book-card 
-                    {% if user_vote and user_vote.option.id == option.id %}selected{% endif %}
-                ">
+        {% if poll %}
 
-                    {% if option.book.cover_image_url %}
-                        <img src="{{ option.book.cover_image_url }}" alt="{{ option.book.title }}">
-                    {% endif %}
+            <h1 class="poll-title">{{ poll.question }}</h1>
 
-                    <div class="book-title">{{ option.book.title }}</div>
+            <div class="poll-options">
 
-                    {% if option.book.goodreads_url %}
-                        <a class="goodreads-link" href="{{ option.book.goodreads_url }}" target="_blank">
-                            View on Goodreads →
+                {% for option in poll.options.all %}
+                    <div class="book-card 
+                        {% if user_vote and user_vote.option.id == option.id %}selected{% endif %}
+                    ">
+
+                        {% if option.book.cover_image_url %}
+                            <img src="{{ option.book.cover_image_url }}" alt="{{ option.book.title }}">
+                        {% endif %}
+
+                        <div class="book-title">{{ option.book.title }}</div>
+
+                        {% if option.book.goodreads_url %}
+                            <a class="goodreads-link" href="{{ option.book.goodreads_url }}" target="_blank">
+                                View on Goodreads →
+                            </a>
+                        {% endif %}
+
+                        {% with stats=option_stats|dict_get:option.id %}
+                            <div class="vote-stats">
+                                {{ stats.count }} votes ({{ stats.percentage }}%)
+                            </div>
+                        {% endwith %}
+
+                        <a class="vote-button"
+                           href="{% url 'vote' poll.id option.id %}">
+                           Vote
                         </a>
-                    {% endif %}
 
-                    {% with stats=option_stats|dict_get:option.id %}
-                        <div class="vote-stats">
-                            {{ stats.count }} votes ({{ stats.percentage }}%)
-                        </div>
-                    {% endwith %}
+                    </div>
+                {% endfor %}
 
-                    <a class="vote-button"
-                    href="{% url 'vote' poll.id option.id %}">
-                    Vote
-                    </a>
-                </div>
+            </div>
 
+        {% else %}
 
-            {% endfor %}
-        </div>
+            <p class="empty-state">No active poll at the moment.</p>
+
+        {% endif %}
 
     {% else %}
-        <p class="empty-state">No active poll at the moment.</p>
+
+        <div class="auth-container">
+            <h2 class="auth-title">Welcome to the book club!</h2>
+            <p class="auth-footer">Please log in to view and vote in the current poll.</p>
+            <a class="action-button" href="{% url 'login' %}">Log In</a>
+        </div>
+
     {% endif %}
 
 </div>
-
 
 {% endblock %}
