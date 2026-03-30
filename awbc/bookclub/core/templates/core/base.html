@@ -94,6 +94,75 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
+
+        .poll-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .book-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .book-card {
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e8e2db;
+            transition: 0.2s ease;
+        }
+
+        .book-card.selected {
+            border: 2px solid var(--accent);
+            background: #fdf7f7;
+        }
+
+        .book-card img {
+            width: 140px;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            object-fit: cover;
+        }
+
+        .book-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .vote-stats {
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .vote-button {
+            display: inline-block;
+            margin-top: 0.6rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--secondary);
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .vote-button:hover {
+            background: var(--accent);
+        }
+
+        .empty-state {
+            padding-left: 1.5rem;
+            font-size: 1.1rem;
+        }
+
     </style>
 
     {% block extra_head %}{% endblock %}

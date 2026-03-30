@@ -1,32 +1,47 @@
 {% extends "core/base.html" %}
 
+{% load core_extras %}
+
 {% block content %}
 
 <div class="poll-section">
+
     {% if poll %}
         <div class="poll-title">{{ poll.question }}</div>
 
         <div class="book-list">
             {% for option in poll.options.all %}
-                <div class="book-card">
+                <div class="book-card 
+                    {% if user_vote and user_vote.option.id == option.id %}selected{% endif %}
+                ">
+
                     {% if option.book.cover_image_url %}
                         <img src="{{ option.book.cover_image_url }}" alt="{{ option.book.title }}">
                     {% endif %}
 
                     <div class="book-title">{{ option.book.title }}</div>
 
-                    {% if option.book.goodreads_url %}
-                        <a class="goodreads-link" href="{{ option.book.goodreads_url }}" target="_blank">
-                            View on Goodreads
-                        </a>
-                    {% endif %}
+                    <div class="vote-stats">
+                        {% with stats=option_stats|dict_get:option.id %}
+                            <div class="vote-stats">
+                                {{ stats.count }} votes ({{ stats.percentage }}%)
+                            </div>
+                        {% endwith %}
+                    </div>
+
+                    <a class="vote-button"
+                       href="{% url 'vote' poll.id option.id %}">
+                       Vote
+                    </a>
                 </div>
             {% endfor %}
         </div>
 
     {% else %}
-        <p>No active poll at the moment.</p>
+        <p class="empty-state">No active poll at the moment.</p>
     {% endif %}
+
 </div>
+
 
 {% endblock %}

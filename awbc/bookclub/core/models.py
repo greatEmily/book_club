@@ -80,6 +80,20 @@ class Vote(models.Model):
     def __str__(self):
         return f"{self.user} → {self.option.book.title}"
 
+# Vote Helper Models
+def total_votes(self):
+    return self.votes.count()
+
+def votes_for_option(self, option):
+    return self.votes.filter(option=option).count()
+
+def percentage_for_option(self, option):
+    total = self.total_votes()
+    if total == 0:
+        return 0
+    return round((self.votes_for_option(option) / total) * 100)
+
+
 # Profile
 class MemberProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
