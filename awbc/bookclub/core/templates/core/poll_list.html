@@ -11,7 +11,7 @@
 
     <h2 class="section-title">Past Polls</h2>
 
-    {% for poll in polls %}
+    {% for poll in past_polls %}
         {% if not poll.is_active %}
             <div class="poll-row">
                 <a href="{% url 'poll_detail' poll.id %}" class="poll-name">
