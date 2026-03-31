@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -162,3 +164,9 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f"{self.user.username} – {self.meeting} – {'Yes' if self.attended else 'No'}"
+
+# Member Profiles
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_member_profile(sender, instance, created, **kwargs):
+    if created:
+        MemberProfile.objects.create(user=instance)

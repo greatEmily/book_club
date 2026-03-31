@@ -30,6 +30,38 @@
             font-size: 1.4rem;
         }
 
+        /* Shared button style for login + logout */
+.action-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--accent); /* your soft rose */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.25rem; /* NEW: adds space below the button */
+}
+
+.action-button:hover {
+    background: #c98f8f; /* slightly darker rose */
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.home-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0.5rem 1.5rem; /* NEW: adds breathing room */
+}
+
+
         /* HAMBURGER */
         .hamburger {
             cursor: pointer;
@@ -50,20 +82,28 @@
         .side-menu {
             position: fixed;
             top: 0;
-            right: -360px; /* fully hidden */
+            right: -308px; /* fully hidden */
             width: 260px;
             height: 100%;
             background: white;
             box-shadow: -4px 0 12px rgba(0,0,0,0.1);
-            padding: 4.5rem 1.5rem 2rem; /* top padding for navbar */
+            padding: 4.5rem 0 2rem; /* top padding for navbar */
             transition: right 0.3s ease;
             z-index: 9999; /* below navbar, above content */
+        }
+
+        .side-menu .action-button {
+            color: white !important;
         }
 
         .side-menu.open {
             right: 0; /* slides in */
         }
-        
+
+        .side-menu-content {
+            padding: 0 1.5rem;
+        }
+   
         .side-menu a {
             display: block;
             margin-bottom: 1rem;
@@ -94,8 +134,10 @@
 
         .book-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem 1.5rem; /* slightly tighter vertical spacing */
+            align-items: start;  /* keeps cards aligned at the top */
+            padding: 0.5rem;     /* subtle breathing room */
         }
 
         .book-card {
@@ -187,6 +229,10 @@
             text-align: center;
         }
 
+        .auth-form {
+            width: 100%;
+        }
+
         .auth-form p {
             margin-bottom: 1rem;
             font-family: var(--font-sans);
@@ -199,14 +245,14 @@
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 1rem;
+            box-sizing: border-box;
         }
 
         .auth-button {
             display: inline-block;
             text-align: center;
-            text-decoration: none;   /* removes underline */
+            text-decoration: none;
             width: 100%;
-            margin-top: 1rem;
             padding: 0.7rem;
             background: var(--secondary);
             color: white;
@@ -215,8 +261,8 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
+            box-sizing: border-box;
         }
-
 
         .auth-button:hover {
             background: var(--accent);
@@ -249,30 +295,67 @@
     padding: 0;
 }
 
-/* Shared button style for login + logout */
-.action-button {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: var(--accent); /* your soft rose */
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
+.profile-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1rem 1.5rem;
+}
+
+.profile-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2rem;
+    color: var(--secondary);
     text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-card {
+    background: var(--primary);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.section-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.3rem;
+    color: var(--secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e8e2db;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.value {
+    color: var(--text);
+}
+
+.edit-profile-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.6rem 1rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
     text-decoration: none;
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-    margin-bottom: 1.25rem; /* NEW: adds space below the button */
+    font-weight: 600;
+    text-align: center;
 }
 
-.action-button:hover {
-    background: #c98f8f; /* slightly darker rose */
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-}
 
 
         

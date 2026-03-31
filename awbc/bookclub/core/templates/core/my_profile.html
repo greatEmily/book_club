@@ -1,0 +1,46 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <h1 class="profile-title">Profile</h1>
+
+    <div class="profile-card">
+
+        <h2 class="section-title">Basic Information</h2>
+        <div class="profile-row">
+            <span class="label">Username:</span>
+            <span class="value">{{ user.username }}</span>
+        </div>
+
+        {% if profile.dob_month and profile.dob_day %}
+        <div class="profile-row">
+            <span class="label">Birthday:</span>
+            <span class="value">{{ profile.dob_month }}/{{ profile.dob_day }}</span>
+        </div>
+        {% endif %}
+
+        <h2 class="section-title">Book Club History</h2>
+
+        {% if profile.is_new_member %}
+            <div class="profile-row">
+                <span class="label">Member Status:</span>
+                <span class="value">New Member</span>
+            </div>
+        {% else %}
+            <div class="profile-row">
+                <span class="label">First Attended:</span>
+                <span class="value">
+                    {{ profile.first_attended_month }}/{{ profile.first_attended_year }}
+                </span>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'edit_profile' %}" class="edit-profile-button">Edit Profile</a>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -26,19 +26,21 @@
 
 <!-- SLIDE-OUT MENU -->
 <div id="sideMenu" class="side-menu">
-    {% if user.is_authenticated %}
-        <form method="POST" action="{% url 'logout' %}" class="logout-form">
-            {% csrf_token %}
-            <button type="submit" class="action-button">Log out</button>
-        </form>
-    {% else %}
-        <a href="/accounts/login/" class="action-button">Login</a>
-    {% endif %}
+    <div class="side-menu-content">
+        {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'logout' %}" class="logout-form">
+                {% csrf_token %}
+                <button type="submit" class="action-button">Log Out</button>
+            </form>
+        {% else %}
+            <a href="/accounts/login/" class="action-button">Log In</a>
+        {% endif %}
 
-    <!-- Future links -->
-    <a href="#">Polls</a>
-    <a href="#">Past Meetings</a>
-    <a href="#">My Profile</a>
+        <!-- Future links -->
+        <a href="#">Polls</a>
+        <a href="#">Past Meetings</a>
+        <a href="{% url 'my_profile' %}">My Profile</a>
+    </div>
 </div>
 
 <script>

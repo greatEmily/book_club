@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Poll, PollOption, Vote
+from .models import Poll, PollOption, Vote, MemberProfile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from .forms import MemberProfileForm
 
 # Create your views here.
 def home(request):
@@ -52,18 +53,45 @@ def vote(request, poll_id, option_id):
     return redirect("home")
 
 # Signup View
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.shortcuts import render, redirect
-
 def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("home")
+            return redirect("#edit_profile")
     else:
         form = UserCreationForm()
 
     return render(request, "core/signup.html", {"form": form})
+
+# Profile Page
+@login_required
+def my_profile(request):
+    return render(request, "core/my_profile.html")
+
+def signup_view(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("my_profile")  # ← NEW
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, "core/signup.html", {"form": form})
+
+@login_required
+def edit_profile(request):
+    profile, created = MemberProfile.objects.get_or_create(user=request.user)
+
+    if request.method == "POST":
+        form = MemberProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect("my_profile")
+    else:
+        form = MemberProfileForm(instance=profile)
+
+    return render(request, "core/edit_profile.html", {"form": form})
