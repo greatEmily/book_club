@@ -59,7 +59,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("#edit_profile")
+            return redirect("edit_profile")
     else:
         form = UserCreationForm()
 
@@ -68,7 +68,9 @@ def signup(request):
 # Profile Page
 @login_required
 def my_profile(request):
-    return render(request, "core/my_profile.html")
+    profile = request.user.memberprofile
+    return render(request, "core/my_profile.html", {"profile": profile})
+
 
 def signup_view(request):
     if request.method == "POST":

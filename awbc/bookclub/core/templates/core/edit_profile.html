@@ -1,14 +1,68 @@
 {% extends "core/base.html" %}
 
 {% block content %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const checkbox = document.querySelector("#id_is_new_member");
+    const wrapper = document.querySelector("#first-attended-fields");
+    const monthField = document.querySelector("#id_first_attended_month");
+    const yearField = document.querySelector("#id_first_attended_year");
+
+    function toggleFields() {
+        if (checkbox.checked) {
+            wrapper.style.display = "none";
+            monthField.value = 0;
+            yearField.value = 0;
+        } else {
+            wrapper.style.display = "block";
+        }
+    }
+
+    checkbox.addEventListener("change", toggleFields);
+    toggleFields(); // run on page load
+});
+</script>
+
+
 <div class="auth-container">
     <h1 class="auth-title">Edit Profile</h1>
 
-    <form method="POST" class="auth-form">
-        {% csrf_token %}
-        {{ form.as_p }}
+    <form method="POST" class="auth-form edit-profile-form">
+    {% csrf_token %}
 
+    <p>
+        {{ form.dob_month.label_tag }}
+        {{ form.dob_month }}
+    </p>
+
+    <p>
+        {{ form.dob_day.label_tag }}
+        {{ form.dob_day }}
+    </p>
+
+    <p>
+        {{ form.is_new_member }}
+        {{ form.is_new_member.label_tag }}
+    </p>
+
+    <div id="first-attended-fields">
+        <p>
+            {{ form.first_attended_month.label_tag }}
+            {{ form.first_attended_month }}
+        </p>
+
+        <p>
+            {{ form.first_attended_year.label_tag }}
+            {{ form.first_attended_year }}
+        </p>
+    </div>
+
+    <div class="form-button-row">
         <button type="submit" class="auth-button">Save Changes</button>
-    </form>
+        <a href="{% url 'my_profile' %}" class="cancel-button">Cancel</a>
+    </div>
+</form>
+
 </div>
 {% endblock %}

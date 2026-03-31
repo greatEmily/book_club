@@ -3,6 +3,7 @@ from .models import MemberProfile
 
 # Month dropdown choices
 MONTH_CHOICES = [
+    (0, "---------"),  # hidden default
     (1, "January"),
     (2, "February"),
     (3, "March"),
@@ -17,8 +18,8 @@ MONTH_CHOICES = [
     (12, "December"),
 ]
 
-# Year dropdown choices (adjust range as needed)
-YEAR_CHOICES = [(y, y) for y in range(2000, 2035)]
+YEAR_CHOICES = [(0, "---------")] + [(y, y) for y in range(2017, 2032)]
+
 
 class MemberProfileForm(forms.ModelForm):
     dob_month = forms.TypedChoiceField(

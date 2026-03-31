@@ -1,41 +1,62 @@
+/* =========================================
+   AWBC GLOBAL STYLES
+   ========================================= */
+
 :root {
-            --primary: #F7F3EE;
-            --secondary: #3f5e4b;
-            --accent: #d6a6a6;
-            --text: #2f2f2f;
-        }
+    --primary: #F7F3EE;
+    --secondary: #3f5e4b;
+    --accent: #d6a6a6;
+    --text: #2f2f2f;
 
-        body {
-            margin: 0;
-            background: var(--primary);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-        }
+    --font-serif: 'Libre Baskerville', serif;
+    --font-sans: 'Inter', sans-serif;
+}
 
-        /* NAV BAR */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: var(--secondary);
-            color: white;
-            position: relative;
-            z-index: 10000;
-            padding-right: 2rem;
-        }
+body {
+    margin: 0;
+    background: var(--primary);
+    color: var(--text);
+    font-family: var(--font-sans);
+}
 
-        .navbar-title {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 1.4rem;
-        }
 
-        /* Shared button style for login + logout */
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--secondary);
+    color: white;
+    position: relative;
+    z-index: 10000;
+}
+
+.navbar-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.4rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-title:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   SHARED BUTTONS
+   ========================================= */
+
 .action-button {
     display: block;
     width: 100%;
     padding: 0.75rem 1rem;
-    background: var(--accent); /* your soft rose */
+    background: var(--accent);
     color: white;
     border: none;
     border-radius: 6px;
@@ -47,253 +68,265 @@
     box-sizing: border-box;
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     transition: background 0.2s ease, box-shadow 0.2s ease;
-    margin-bottom: 1.25rem; /* NEW: adds space below the button */
+    margin-bottom: 1.25rem;
 }
 
 .action-button:hover {
-    background: #c98f8f; /* slightly darker rose */
+    background: #c98f8f;
     box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
+
+
+/* =========================================
+   HAMBURGER MENU
+   ========================================= */
+
+.hamburger {
+    cursor: pointer;
+    width: 28px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger div {
+    height: 4px;
+    background: white;
+    border-radius: 2px;
+}
+
+
+/* =========================================
+   SLIDE-OUT MENU
+   ========================================= */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -308px;
+    width: 260px;
+    height: 100%;
+    background: white;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+    padding: 4.5rem 0 2rem;
+    transition: right 0.3s ease;
+    z-index: 9999;
+}
+
+.side-menu.open {
+    right: 0;
+}
+
+.side-menu-content {
+    padding: 0 1.5rem;
+}
+
+.side-menu a {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.side-menu a:hover {
+    color: var(--accent);
+}
+
+
+/* =========================================
+   HOME PAGE LAYOUT
+   ========================================= */
 
 .home-container {
     max-width: 1000px;
     margin: 2rem auto;
-    padding: 0.5rem 1.5rem; /* NEW: adds breathing room */
+    padding: 0.5rem 1.5rem;
 }
 
 
-        /* HAMBURGER */
-        .hamburger {
-            cursor: pointer;
-            width: 28px;
-            height: 22px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+/* =========================================
+   POLL SECTION
+   ========================================= */
 
-        .hamburger div {
-            height: 4px;
-            background: white;
-            border-radius: 2px;
-        }
-
-        /* SLIDE-OUT MENU */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -308px; /* fully hidden */
-            width: 260px;
-            height: 100%;
-            background: white;
-            box-shadow: -4px 0 12px rgba(0,0,0,0.1);
-            padding: 4.5rem 0 2rem; /* top padding for navbar */
-            transition: right 0.3s ease;
-            z-index: 9999; /* below navbar, above content */
-        }
-
-        .side-menu .action-button {
-            color: white !important;
-        }
-
-        .side-menu.open {
-            right: 0; /* slides in */
-        }
-
-        .side-menu-content {
-            padding: 0 1.5rem;
-        }
-   
-        .side-menu a {
-            display: block;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .side-menu a:hover {
-            color: var(--accent);
-        }
-
-        .poll-section {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .poll-title {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary);
-        }
-
-        .book-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.25rem 1.5rem; /* slightly tighter vertical spacing */
-            align-items: start;  /* keeps cards aligned at the top */
-            padding: 0.5rem;     /* subtle breathing room */
-        }
-
-        .book-card {
-            background: var(--primary);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid #e8e2db;
-            transition: 0.2s ease;
-        }
-
-        .book-card.selected {
-            border: 2px solid var(--accent);
-            background: #fdf7f7;
-        }
-
-        .book-card img {
-            width: 140px;
-            height: auto;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            object-fit: cover;
-        }
-
-        .book-title {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 1.1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .vote-stats {
-            margin-top: 0.4rem;
-            font-size: 0.9rem;
-            color: var(--secondary);
-        }
-
-        .vote-button {
-            display: inline-block;
-            margin-top: 0.6rem;
-            padding: 0.4rem 0.8rem;
-            background: var(--secondary);
-            color: white;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .vote-button:hover {
-            background: var(--accent);
-        }
-
-        .empty-state {
-            padding-left: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .goodreads-link {
-            display: block;
-            margin: 0.4rem 0 0.6rem;
-            font-size: 0.9rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .goodreads-link:hover {
-            text-decoration: underline;
-        }
-
-        .auth-container {
-            max-width: 420px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: var(--primary);
-            border-radius: 12px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .auth-title {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .auth-form {
-            width: 100%;
-        }
-
-        .auth-form p {
-            margin-bottom: 1rem;
-            font-family: var(--font-sans);
-            margin-bottom: 1.2rem;
-        }
-
-        .auth-form input {
-            width: 100%;
-            padding: 0.6rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
-
-        .auth-button {
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-            width: 100%;
-            padding: 0.7rem;
-            background: var(--secondary);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-sizing: border-box;
-        }
-
-        .auth-button:hover {
-            background: var(--accent);
-        }
-
-        .auth-footer {
-            margin-top: 1rem;
-            text-align: center;
-            font-family: var(--font-sans);
-        }
-
-        .auth-footer a {
-            color: var(--secondary);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        /* Make Django help text feel like soft hints */
-        .helptext {
-            display: block;
-            margin-top: 0.25rem;
-            font-size: 0.8rem;
-            font-style: italic;
-            color: #666;
-            line-height: 1.3;
-        }
-
-        .logout-form {
-    margin: 0;
-    padding: 0;
+.poll-section {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
+
+.poll-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+}
+
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem 1.5rem;
+    align-items: start;
+    padding: 0.5rem;
+}
+
+.book-card {
+    background: var(--primary);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #e8e2db;
+    transition: 0.2s ease;
+}
+
+.book-card.selected {
+    border: 2px solid var(--accent);
+    background: #fdf7f7;
+}
+
+.book-card img {
+    width: 140px;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+}
+
+.book-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.vote-stats {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.vote-button {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--secondary);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.vote-button:hover {
+    background: var(--accent);
+}
+
+
+/* =========================================
+   AUTH / FORMS (Login, Signup, Edit Profile)
+   ========================================= */
+
+.auth-container {
+    max-width: 420px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--primary);
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+.auth-form {
+    width: 100%;
+}
+
+.auth-form p {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.auth-form label {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--secondary);
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.auth-form input,
+.auth-form select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #d8d2ca;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    box-sizing: border-box;
+    background: white;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(63, 94, 75, 0.15);
+    outline: none;
+}
+
+/* Checkbox alignment */
+.auth-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.auth-form p:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-button:hover {
+    background: var(--accent);
+}
+
+.helptext {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #666;
+}
+
+
+/* =========================================
+   PROFILE PAGE
+   ========================================= */
 
 .profile-container {
     max-width: 700px;
@@ -302,7 +335,7 @@
 }
 
 .profile-title {
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-serif);
     font-size: 2rem;
     color: var(--secondary);
     text-align: center;
@@ -317,7 +350,7 @@
 }
 
 .section-title {
-    font-family: 'Libre Baskerville', serif;
+    font-family: var(--font-serif);
     font-size: 1.3rem;
     color: var(--secondary);
     margin-top: 1.5rem;
@@ -353,9 +386,40 @@
     border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
+}
+
+/* Button row for Edit Profile */
+.form-button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* Cancel button styling */
+.cancel-button {
+    display: inline-block;
+    padding: 0.7rem;
+    width: 100%;
     text-align: center;
+    background: #e4dcd5; /* soft neutral */
+    color: var(--secondary);
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
+
+.cancel-button:hover {
+    background: #d6cec7;
+}
+
+#first-attended-fields {
+    transition: opacity 0.2s ease;
 }
 
 
 
-        
+
