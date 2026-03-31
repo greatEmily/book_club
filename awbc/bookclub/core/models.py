@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
 # Create your models here.
 
@@ -42,6 +43,29 @@ class Poll(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     closes_at = models.DateTimeField(null=True, blank=True)
     is_closed = models.BooleanField(default=False)
+
+    def total_votes(self):
+        return self.votes.count()
+
+    def votes_for_option(self, option):
+        return self.votes.filter(option=option).count()
+
+    def percentage_for_option(self, option):
+        total = self.total_votes()
+        if total == 0:
+            return 0
+        return round((self.votes_for_option(option) / total) * 100)
+
+    def winner(self):
+        options = self.options.all()
+        if not options:
+            return None
+        return max(options, key=lambda o: o.votes.count())
+
+    def winner_percentage(self):
+        if not self.winner():
+            return 0
+        return self.percentage_for_option(self.winner())
 
     def save(self, *args, **kwargs):
         # Build the dynamic title automatically

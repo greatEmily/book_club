@@ -1,0 +1,33 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+<div class="poll-section">
+
+    <h1 class="poll-title">Polls</h1>
+
+    {% if current_poll %}
+        <a href="/" class="current-poll-link">View Current Poll →</a>
+    {% endif %}
+
+    <h2 class="section-title">Past Polls</h2>
+
+    {% for poll in polls %}
+        {% if not poll.is_active %}
+            <div class="poll-row">
+                <a href="{% url 'poll_detail' poll.id %}" class="poll-name">
+                    {{ poll.question }}
+                </a>
+
+                <div class="poll-winner">
+                    Winner: <strong>{{ poll.winner.book.title }}</strong>
+                    ({{ poll.winner_percentage }}%)
+                </div>
+            </div>
+        {% endif %}
+    {% empty %}
+        <p>No past polls yet.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
