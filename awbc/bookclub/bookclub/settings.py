@@ -25,9 +25,15 @@ SECRET_KEY = "django-insecure-kd(ronx_5#h8zc2uy^=#qhc2#uc3w=up(p9@#s2gl!r-11@u@r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["awbc.onrender.com"]
+ALLOWED_HOSTS = [
+    "awbc.onrender.com",
+]
 
 CSRF_TRUSTED_ORIGINS = ["https://awbc.onrender.com"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://awbc.onrender.com",
+]
 
 # Application definition
 
@@ -50,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "bookclub.urls"
@@ -119,7 +126,10 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
