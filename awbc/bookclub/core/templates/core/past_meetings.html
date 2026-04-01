@@ -1,0 +1,32 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<div class="poll-section">
+
+    <h1 class="poll-title">Past Meetings</h1>
+
+    {% for item in meeting_data %}
+        <div class="poll-row">
+            <div>
+                <strong>{{ item.meeting.month_name }} {{ item.meeting.year }} Meeting</strong>
+                {% if item.meeting.book %}
+                    <div class="small-text">
+                        Book: {{ item.meeting.book.title }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="attendance-status">
+                {% if item.attended %}
+                    <span class="attended">Attended</span>
+                {% else %}
+                    <span class="missed">Missed</span>
+                {% endif %}
+            </div>
+        </div>
+    {% empty %}
+        <p>No meetings recorded yet.</p>
+    {% endfor %}
+
+</div>
+{% endblock %}

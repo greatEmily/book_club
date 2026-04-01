@@ -145,6 +145,82 @@ body {
     padding: 0.5rem 1.5rem;
 }
 
+/* =========================================
+   NEXT MEETING SECTION (HOME PAGE)
+   ========================================= */
+
+.next-meeting-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: white;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+.calendar-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--secondary);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-serif);
+}
+
+.calendar-month {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.calendar-day {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.next-meeting-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.next-meeting-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.next-meeting-date {
+    font-size: 1.1rem;
+    font-family: var(--font-serif);
+    margin-top: 0.1rem;
+}
+
+.next-meeting-book {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    color: var(--text);
+}
+
+.next-meeting-time {
+    font-size: 0.95rem;
+    color: var(--secondary);
+    margin-top: 0.2rem;
+}
+
+.next-meeting-location {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 0.2rem;
+}
 
 /* =========================================
    POLL SECTION (HOME PAGE)
@@ -511,4 +587,27 @@ body {
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 600;
+}
+
+/* =========================================
+   PAST MEETING PAGE
+   ========================================= */
+
+   .attendance-status {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.attended {
+    color: var(--secondary);
+}
+
+.missed {
+    color: #b88b8b;
+}
+
+.small-text {
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-top: 0.2rem;
 }

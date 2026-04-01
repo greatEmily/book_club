@@ -150,6 +150,9 @@ class Meeting(models.Model):
     # Optional: actual meeting date if you want to track it
     date = models.DateField(null=True, blank=True)
 
+    time = models.TimeField(null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
+
     # Optional: link to the book read that month
     book = models.ForeignKey(
         Book,
@@ -164,6 +167,9 @@ class Meeting(models.Model):
     class Meta:
         unique_together = ("month", "year")
         ordering = ["-year", "-month"]
+
+    def month_name(self):
+        return dict(self.MONTH_CHOICES).get(self.month)
 
     def __str__(self):
         month_name = dict(self.MONTH_CHOICES).get(self.month, "")

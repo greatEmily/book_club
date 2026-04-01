@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Poll, PollOption, Vote, MemberProfile
+from .models import Poll, PollOption, Vote, MemberProfile, Meeting, Attendance
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import MemberProfileForm
+from django.utils import timezone
 
 # Create your views here.
 def home(request):
@@ -30,10 +31,19 @@ def home(request):
             # Get user's vote
             user_vote = poll.votes.filter(user=request.user).first()
 
+    # Calendar/Next Meeting
+    today = timezone.now().date()
+
+    next_meeting = Meeting.objects.filter(
+        date__isnull=False,
+        date__gte=today
+    ).order_by('date').first()
+
     return render(request, "core/home.html", {
         "poll": poll,
         "user_vote": user_vote,
         "option_stats": option_stats,
+        "next_meeting": next_meeting,
     })
 
 
@@ -134,3 +144,30 @@ def poll_detail(request, poll_id):
         "option_stats": option_stats,
     })
 
+# Past Meetings
+@login_required
+@login_required
+def past_meetings(request):
+    today = timezone.now().date()
+
+    # Only include meetings with a date AND that date is in the past or today
+    meetings = Meeting.objects.filter(
+        date__isnull=False,
+        date__lte=today
+    ).order_by('-date')
+
+    meeting_data = []
+    for meeting in meetings:
+        attendance_record = Attendance.objects.filter(
+            meeting=meeting,
+            user=request.user
+        ).first()
+
+        meeting_data.append({
+            "meeting": meeting,
+            "attended": attendance_record.attended if attendance_record else False,
+        })
+
+    return render(request, "core/past_meetings.html", {
+        "meeting_data": meeting_data,
+    })

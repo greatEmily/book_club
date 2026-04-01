@@ -8,6 +8,44 @@
 
     {% if user.is_authenticated %}
 
+        {% if next_meeting %}
+        <div class="next-meeting-card">
+            <div class="calendar-icon">
+                <div class="calendar-month">
+                    {{ next_meeting.date|date:"M" }}
+                </div>
+                <div class="calendar-day">
+                    {{ next_meeting.date|date:"j" }}
+                </div>
+            </div>
+
+            <div class="next-meeting-info">
+                <div class="next-meeting-label">Next Meeting</div>
+                <div class="next-meeting-date">
+                    {{ next_meeting.date|date:"F j, Y" }}
+                </div>
+
+                {% if next_meeting.time %}
+                <div class="next-meeting-time">
+                    {{ next_meeting.time|time:"g:i A" }}
+                </div>
+                {% endif %}
+
+                {% if next_meeting.location %}
+                <div class="next-meeting-location">
+                    📍 {{ next_meeting.location }}
+                </div>
+                {% endif %}
+
+                {% if next_meeting.book %}
+                <div class="next-meeting-book">
+                    Reading: <strong>{{ next_meeting.book.title }}</strong>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
         {% if poll %}
 
             <h1 class="poll-title">{{ poll.question }}</h1>

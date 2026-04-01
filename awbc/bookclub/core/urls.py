@@ -9,4 +9,5 @@ urlpatterns = [
     path("edit-profile/", views.edit_profile, name="edit_profile"),
     path("polls/", views.poll_list, name="poll_list"),
     path("polls/<int:poll_id>/", views.poll_detail, name="poll_detail"),
+    path("past-meetings/", views.past_meetings, name="past_meetings"),
 ]
