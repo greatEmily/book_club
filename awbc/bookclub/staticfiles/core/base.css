@@ -1,0 +1,677 @@
+/* =========================================
+   AWBC GLOBAL STYLES
+   ========================================= */
+
+:root {
+    --primary: #F7F3EE;
+    --secondary: #3f5e4b;
+    --accent: #d6a6a6;
+    --text: #2f2f2f;
+
+    --font-serif: 'Libre Baskerville', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    background: var(--primary);
+    color: var(--text);
+    font-family: var(--font-sans);
+}
+
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--secondary);
+    color: white;
+    position: relative;
+    z-index: 10000;
+}
+
+.navbar-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar-title:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   SHARED BUTTONS
+   ========================================= */
+
+.action-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.25rem;
+}
+
+.action-button:hover {
+    background: #c98f8f;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+
+/* =========================================
+   HAMBURGER MENU
+   ========================================= */
+
+/* Make sure ANY bars inside hamburger are white */
+.hamburger span,
+.hamburger div {
+    display: block;
+    height: 3px;
+    background: #ffffff !important;
+    border-radius: 3px;
+    transition: 0.3s ease;
+}
+
+.hamburger {
+    width: 28px;
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+/* When menu is open → transform into X */
+.hamburger.open span:nth-child(1),
+.hamburger.open div:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2),
+.hamburger.open div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3),
+.hamburger.open div:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* =========================================
+   SLIDE-OUT MENU
+   ========================================= */
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -308px;
+    width: 260px;
+    height: 100%;
+    background: white;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.1);
+    padding: 4.5rem 0 2rem;
+    transition: right 0.3s ease;
+    z-index: 9999;
+}
+
+.side-menu.open {
+    right: 0;
+}
+
+.side-menu-content {
+    padding: 0 1.5rem;
+}
+
+.side-menu a {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.side-menu a:hover {
+    color: var(--accent);
+}
+
+
+/* =========================================
+   HOME PAGE LAYOUT
+   ========================================= */
+
+.home-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0.5rem 1.5rem;
+}
+
+/* =========================================
+   NEXT MEETING SECTION (HOME PAGE)
+   ========================================= */
+
+/* Layout */
+.next-meeting-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background: white;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.next-meeting-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Right side container */
+.next-meeting-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+}
+
+/* Base button */
+.rsvp-toggle {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+    text-align: center;
+}
+
+/* Hover */
+.rsvp-toggle:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+}
+
+/* Going state */
+.rsvp-toggle.going {
+    background: var(--secondary);
+}
+
+.rsvp-toggle.going:hover {
+    background: var(--accent);
+}
+
+.calendar-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--secondary);
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-serif);
+}
+
+.calendar-month {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+.calendar-day {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.next-meeting-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.next-meeting-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.next-meeting-date {
+    font-size: 1.1rem;
+    font-family: var(--font-serif);
+    margin-top: 0.1rem;
+}
+
+.next-meeting-book {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    color: var(--text);
+}
+
+.next-meeting-time {
+    font-size: 0.95rem;
+    color: var(--secondary);
+    margin-top: 0.2rem;
+}
+
+.next-meeting-location {
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-top: 0.2rem;
+}
+
+/* =========================================
+   POLL SECTION (HOME PAGE)
+   ========================================= */
+
+.poll-section {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.poll-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary);
+}
+
+/* HOME PAGE book list */
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem 1.5rem;
+    align-items: start;
+    padding: 0.5rem;
+}
+
+/* HOME PAGE book card */
+.book-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #e8e2db;
+    transition: 0.2s ease;
+}
+
+.book-card img {
+    width: 140px;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+}
+
+.book-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.goodreads-link {
+    display: inline-block;
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.goodreads-link:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+.vote-stats {
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--secondary);
+}
+
+.vote-button {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.4rem 0.8rem;
+    background: var(--secondary);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.vote-button:hover {
+    background: var(--accent);
+}
+
+
+/* =========================================
+   POLL DETAIL PAGE (NAMESPACED)
+   ========================================= */
+
+.poll-detail-page .book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.poll-detail-page .book-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #e8e2db;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.poll-detail-page .book-card img {
+    width: 160px;
+    margin-bottom: 0.75rem;
+}
+
+.poll-detail-page .winner-badge {
+    margin-top: 0.75rem;
+    padding: 0.4rem 0.7rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   AUTH / FORMS
+   ========================================= */
+
+.auth-container {
+    max-width: 420px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--primary);
+    border-radius: 12px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+.auth-form {
+    width: 100%;
+}
+
+.auth-form p {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.auth-form label {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--secondary);
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.auth-form input,
+.auth-form select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #d8d2ca;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    box-sizing: border-box;
+    background: white;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 3px rgba(63, 94, 75, 0.15);
+    outline: none;
+}
+
+.auth-form input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+.auth-form p:has(input[type="checkbox"]) {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 0.7rem;
+    background: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-button:hover {
+    background: var(--accent);
+}
+
+.helptext {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #666;
+}
+
+
+/* =========================================
+   PROFILE PAGE
+   ========================================= */
+
+.profile-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1rem 1.5rem;
+}
+
+.profile-title {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: var(--secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-card {
+    background: var(--primary);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--secondary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e8e2db;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: 600;
+    color: var(--secondary);
+}
+
+.value {
+    color: var(--text);
+}
+
+.edit-profile-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.6rem 1rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-button-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.cancel-button {
+    display: inline-block;
+    padding: 0.7rem;
+    width: 100%;
+    text-align: center;
+    background: #e4dcd5;
+    color: var(--secondary);
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
+
+.cancel-button:hover {
+    background: #d6cec7;
+}
+
+#first-attended-fields {
+    transition: opacity 0.2s ease;
+}
+
+
+/* =========================================
+   POLL LIST PAGE
+   ========================================= */
+
+.current-poll-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+.current-poll-link:hover {
+    color: var(--accent);
+}
+
+.poll-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #e8e2db;
+}
+
+.poll-name {
+    font-family: var(--font-serif);
+    color: var(--secondary);
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.poll-name:hover {
+    color: var(--accent);
+}
+
+.poll-winner {
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.winner-badge {
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* =========================================
+   PAST MEETING PAGE
+   ========================================= */
+
+   .attendance-status {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.attended {
+    color: var(--secondary);
+}
+
+.missed {
+    color: #b88b8b;
+}
+
+.small-text {
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-top: 0.2rem;
+}
