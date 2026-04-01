@@ -11,6 +11,16 @@
     {% block extra_head %}{% endblock %}
 </head>
 
+<script>
+function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    const burger = document.querySelector(".hamburger");
+
+    menu.classList.toggle("open");
+    burger.classList.toggle("open");
+}
+</script>
+
 <body>
 
 <!-- NAV BAR -->
@@ -44,15 +54,6 @@
         <a href="{% url 'my_profile' %}">My Profile</a>
     </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        window.toggleMenu = function () {
-            const menu = document.getElementById("sideMenu");
-            menu.classList.toggle("open");
-        };
-    });
-</script>
 
 {% block content %}{% endblock %}
 

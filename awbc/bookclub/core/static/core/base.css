@@ -81,21 +81,41 @@ body {
    HAMBURGER MENU
    ========================================= */
 
+/* Make sure ANY bars inside hamburger are white */
+.hamburger span,
+.hamburger div {
+    display: block;
+    height: 3px;
+    background: #ffffff !important;
+    border-radius: 3px;
+    transition: 0.3s ease;
+}
+
 .hamburger {
-    cursor: pointer;
     width: 28px;
     height: 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer;
+    z-index: 10001;
 }
 
-.hamburger div {
-    height: 4px;
-    background: white;
-    border-radius: 2px;
+/* When menu is open → transform into X */
+.hamburger.open span:nth-child(1),
+.hamburger.open div:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
 }
 
+.hamburger.open span:nth-child(2),
+.hamburger.open div:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3),
+.hamburger.open div:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
 
 /* =========================================
    SLIDE-OUT MENU
@@ -149,15 +169,59 @@ body {
    NEXT MEETING SECTION (HOME PAGE)
    ========================================= */
 
+/* Layout */
 .next-meeting-card {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
+    align-items: stretch;
     background: white;
     padding: 1rem 1.25rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     margin-bottom: 2rem;
+    position: relative;
+}
+
+.next-meeting-left {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Right side container */
+.next-meeting-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 110px;
+}
+
+/* Base button */
+.rsvp-toggle {
+    display: inline-block;
+    padding: 0.55rem 1.1rem;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+    text-align: center;
+}
+
+/* Hover */
+.rsvp-toggle:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+}
+
+/* Going state */
+.rsvp-toggle.going {
+    background: var(--secondary);
+}
+
+.rsvp-toggle.going:hover {
+    background: var(--accent);
 }
 
 .calendar-icon {

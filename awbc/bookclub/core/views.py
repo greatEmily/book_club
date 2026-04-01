@@ -39,11 +39,21 @@ def home(request):
         date__gte=today
     ).order_by('date').first()
 
+    # RSVP for meeting
+    user_rsvp = None
+    if next_meeting and request.user.is_authenticated:
+        attendance = Attendance.objects.filter(
+            meeting=next_meeting,
+            user=request.user
+        ).first()
+        user_rsvp = attendance.rsvp if attendance else False
+
     return render(request, "core/home.html", {
         "poll": poll,
         "user_vote": user_vote,
         "option_stats": option_stats,
         "next_meeting": next_meeting,
+        "user_rsvp": user_rsvp,
     })
 
 
@@ -171,3 +181,19 @@ def past_meetings(request):
     return render(request, "core/past_meetings.html", {
         "meeting_data": meeting_data,
     })
+
+# RSVPs
+@login_required
+def rsvp_meeting(request, meeting_id):
+    meeting = get_object_or_404(Meeting, id=meeting_id)
+
+    attendance, created = Attendance.objects.get_or_create(
+        meeting=meeting,
+        user=request.user
+    )
+
+    # Toggle behavior
+    attendance.rsvp = not attendance.rsvp
+    attendance.save()
+
+    return redirect("home")

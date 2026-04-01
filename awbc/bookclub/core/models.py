@@ -188,6 +188,7 @@ class Attendance(models.Model):
         related_name="attendance_records",
     )
     attended = models.BooleanField(default=False)
+    rsvp = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ("meeting", "user")
