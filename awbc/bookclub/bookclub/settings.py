@@ -27,6 +27,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "awbc.onrender.com",
+    "localhost",
+    "127.0.0.1",
+    ".github.dev",
 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://awbc.onrender.com"]
